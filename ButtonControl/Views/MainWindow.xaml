@@ -1,0 +1,21 @@
+﻿<Window x:Class="ButtonControl.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+		xmlns:ri="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.NET46"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title.Value}" Height="200" Width="250">
+	<Grid>
+		<Button Content="{Binding ButtonContent.Value}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="25">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="PreviewMouseDown">
+					<ri:EventToReactiveCommand Command="{Binding ButtonDownCommand}"/>
+				</i:EventTrigger>
+				<i:EventTrigger EventName="PreviewMouseUp">
+					<ri:EventToReactiveCommand Command="{Binding ButtonUpCommand}"/>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</Button>
+	</Grid>
+</Window>
